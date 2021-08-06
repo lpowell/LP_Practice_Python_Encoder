@@ -109,11 +109,10 @@ def pgp_en(encrypt, input_file, output_file, key_file):
 		output_file.write(str(encrypted_file_message))
 		sys.exit()
 	else:
-		# decrypt still wonky
 		key, _ = pgpy.PGPKey.from_file(key_file.name)
 		encrypted_message = pgpy.PGPMessage.from_file(input_file.name)
 		decrypted_message = key.decrypt(encrypted_message)
-		str_decrypted_message = str(decrypted_message)
+		str_decrypted_message = decrypted_message.message
 		output_file.write(str_decrypted_message)
 		sys.exit()
 getfunc()
